@@ -153,6 +153,17 @@ Perform the following steps
 2. step 2
 ```
 
+## 2.6 Committing Changes
+
+Perform the following steps
+1. Run ``git fetch`` to check if there are any remote changes, use ``git pull`` to retrieve and merge them to your current branch. Make changes.
+2. Run ``git status`` to check modified files
+3. Optionally use ``git add <file>`` to add any untracked files
+4. Run ``git commit`` to open the editor to input your commit message. You can change the editor using ``EDITOR`` variable as such: ``EDITOR=vi git commit``. This change is not permanent unless you add it to your .profile (or .bashrc, depending on your environment). You may also use ``git commit -m "Message"`` as a one-liner to commit without opening a separate editor.
+5. Use ``git push`` to sync your changes to the remote repository.
+6. ???
+7. Profit
+
 ## 2.7 Staging the File
 
 Run the status command (as before) to show the current status of the repository. You should see that the file is shown as modified and that no files have been staged. Time to stage the README.md file. If you check the status again you should see the file listed as modified and staged ready for committing. Commit the staged file and add a message ‘Instructions on committing files’.
