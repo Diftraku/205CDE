@@ -1,0 +1,51 @@
+html {
+    font-family: Arial;
+    text-align: center;
+}
+h1 {
+    font-size: 7em;
+    margin: 0.4em;
+    margin-bottom: 0.2em;
+    font-weight: lighter;
+    line-height: 0.75em;
+}
+img {
+    border: 2px solid lightblue;
+    width: 8em;
+}
+figcaption {
+    padding: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+div {
+    margin: 0 auto;
+    width: 14em;
+    margin-top: 2em;
+}
+p.berry {
+    width: 12em;
+    padding: 1.2em;
+    margin: 0;
+    border-bottom: 1px solid black;
+}
+p.berry span {
+    display: block;
+}
+span.name-english {
+    font-size: 2em;
+}
+span.name-latin {
+    font-style: italic;
+    font-size: 1em;
+}
+p.blueberry {
+    background-color: lightblue;
+    border-top: 1px solid black;
+}
+p.cloudberry {
+    background-color: lightyellow;
+}
+p.lingonberry {
+    background-color: lightcoral;
+}

@@ -6,6 +6,10 @@ p {
     color: blue;
 }
 
+body p:nth-of-type(3), body p:nth-of-type(5) {
+    text-decoration: underline;
+}
+
 h1.alert {
     font-size: 3em;
 }

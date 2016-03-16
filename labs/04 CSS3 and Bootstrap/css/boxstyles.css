@@ -1,0 +1,26 @@
+p.one {
+    border: 1px solid black;
+    padding: 3em;
+    margin:  1em;
+    margin-bottom: 0em;
+}
+p.two {
+    padding: 0;
+    margin: 5em;
+    margin-top: 0;
+}
+p.three {
+    border-left: 3px solid black;
+    padding: 1em;
+    padding-top: 0;
+    margin-top: 2em;
+    margin-bottom: 8em;
+}
+p.four {
+    border: 5px dashed red;
+    /* Note: -webkit and -moz are used due to backwards compatibility,
+    CSS3 finalized border-radius but the support was in the browser during the development phase */
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+}

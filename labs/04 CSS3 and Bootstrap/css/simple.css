@@ -1,0 +1,59 @@
+html {
+    background-color: #C2CCD1;
+}
+body {
+    font-family: Arial, Verdana, sans-serif;
+}
+
+h1, h2 {
+    color: blue;
+    font-weight: bold;
+}
+
+h1 {
+    color: rgba(65,105,225, 0.7);
+    font-size: 4.0em;
+}
+
+a {
+    font-weight: bold;
+}
+
+ul, ol {
+    font-size: 0.8em;
+    border: 1px solid black;
+}
+
+li {
+    color: darkgrey;
+}
+
+p, ul, ol {
+    text-indent: 3em;
+}
+
+figcaption {
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+p.copyright_notice {
+    font-size: 0.8em;
+}
+
+#special {
+    font-size: 0.8em;
+    color: yellowgreen;
+    font-style: italic;
+    border-left: 2px solid black;
+    margin-left: 40px;
+    padding-left: 10px;
+}
+
+p::first-letter {
+    font-size:8em;
+}
+
+p::first-line {
+    font-weight: bold;
+}

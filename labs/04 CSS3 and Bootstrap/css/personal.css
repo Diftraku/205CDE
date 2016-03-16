@@ -1,0 +1,56 @@
+body {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+}
+header {
+    width: 50em;
+    height: 15em;
+    overflow: hidden;
+    margin: 0 auto;
+}
+header img {
+    max-width: 100%;
+    position: relative;
+    top: -5em;
+}
+nav {
+    width: 50em;
+    height: 3em;
+    margin: 0 auto;
+    background-color: lightgray;
+}
+
+nav span {
+    float: left;
+}
+nav span a {
+    display: block;
+    padding: 1em;
+    width: 4em;
+}
+
+article {
+    width: 50em;
+    margin: 0 auto;
+    background-color: lightcoral;
+    position: relative;
+    top: -1.3em;
+    padding-bottom: 2em;
+}
+
+article * {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+article h1, article h2 {
+    padding-top: 1.2em;
+    margin-left: 1.2em;
+}
+article figure {
+    text-align: center;
+}
+article figure img {
+    width: 20em;
+}
+article ul {
+    margin: 0;
+}

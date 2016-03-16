@@ -1,0 +1,7 @@
+body {
+    /* Add -moz versions if using on Gecko-based browsers */
+    /*-webkit-columns: 2;
+    columns: 2;*/
+    -webkit-columns: 3;
+    columns: 3;
+}

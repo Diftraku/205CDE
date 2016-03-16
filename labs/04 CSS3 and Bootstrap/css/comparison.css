@@ -1,0 +1,44 @@
+* {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+}
+p:nth-of-type(1) {
+    padding-left: 10px;
+}
+p:nth-of-type(1) span {
+    font-weight: bold;
+
+}
+hr {
+    display: none;
+}
+table {
+    border: 1px solid gray;
+    border-spacing: 0;
+    font-size: 0.92em;
+}
+table caption {
+    border: 1px solid grey;
+    border-bottom: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em;
+}
+td, th {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+tbody tr:nth-child(even) {
+    background-color: rgba(204, 204, 204, 0.20);
+}
+tr td:nth-of-type(1), tr th:nth-of-type(1) {
+    border-right: 1px solid gray;
+    font-weight: bold;
+    text-align: left;
+    text-transform: uppercase;
+}
+thead {
+    background-color: red;
+}
+thead th {
+    color: white;
+}
