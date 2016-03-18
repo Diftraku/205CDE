@@ -1,63 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-	<!--
-	This page demonstrates a form.
-	-->
-	<head>
-		<meta charset="utf-8"/>
-		<title>Demonstrating HTML forms</title>
-	</head>
-	
-	<body>
-		<h1>Turnitin</h1>
-		<form  lang="fi" action="">
-			<div>
-				Name: <input type="text" name="studentname"/>
-			</div>
-			<div>
-				Student id: <input type="text" name="id"  />
-			</div>
-			<div>
-				Email:
-				<!--
-				Make an input named "email"
-				-->
-			</div>
-			<div>
-				Assignment:
-				<!--
-				Make an input named "assignment"
-				-->
-				
-			</div>
+<!--
+This page demonstrates a form.
+-->
+<head>
+    <meta charset="utf-8"/>
+    <title>Demonstrating HTML forms</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-			<div>
-				Code:
-				<!--
-				Make an input named "code" which is a text area to put student's code into.
-				-->
-				
-			</div>
-			<div>
-				Cheat:
-			<!--
-				Make an input named "cheat" which is a check box the student must check.
-			-->
-			</div>
-			<div>
-				Pay:
-			<!--
-				Make an input named "payment" which is a radio box with possible values of visa, paypal, mastercard
-			-->
-			</div>
-			<div>
-				Score:
-			<!--
-				Make an input named "score" which is a list of choices for the score 
-			-->
-			</div>
-			<input type="submit" />
-		</form>
-		<a href="http://jigsaw.w3.org/css-validator/check/referer">Validate</a>
-	</body>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="container">
+    <h1>Turnitin</h1>
+    <form lang="fi" action="">
+
+        <fieldset>
+            <legend>Student Info</legend>
+            <div class="form-group">
+                <label for="student-name">Name:</label>
+                <input type="text" class="form-control" name="studentname" id="student-name"/>
+
+            </div>
+            <div class="form-group">
+                <label for="student-id">Student ID:</label>
+                <input type="text" class="form-control" name="id" id="student-id" pattern="\d{7}"
+                       oninvalid="this.setCustomValidity('Tarkista opiskelijanumero (7 numeroa)')"/>
+
+            </div>
+            <div class="form-group">
+                <label for="student-email">Email:</label>
+                <!--
+                Make an input named "email"
+
+                Note: using input type `email` instead of pattern here.
+                Using regular expressions to validate email addresses is a magic in itself.
+                @see https://davidcel.is/posts/stop-validating-email-addresses-with-regex/
+                -->
+                <input type="email" class="form-control" name="email" id="student-email"
+                       oninvalid="this.setCustomValidity('Tarkista sähköpostiosoite')"/>
+
+            </div>
+
+        </fieldset>
+        <fieldset>
+            <legend>Assigment</legend>
+            <div class="form-group">
+                <label for="assignment-name">Assignment:</label>
+                <!--
+                Make an input named "assignment"
+                -->
+                <input type="text" class="form-control" name="assignment" id="assignment-name"/>
+
+            </div>
+            <div class="form-group">
+                <label for="assignment-code">Code:</label>
+                <!--
+                Make an input named "code" which is a text area to put student's code into.
+                -->
+                <textarea name="code" class="form-control" id="assignment-code"></textarea>
+
+            </div>
+            <div class="form-group">
+                <label for="assignment-cheat">Cheat:</label>
+                <!--
+                    Make an input named "cheat" which is a check box the student must check.
+                -->
+                <input id="cheat" class="form-control" type="checkbox" id="assignment-cheat"
+                       name="cheat">
+
+            </div>
+
+        </fieldset>
+        <fieldset>
+            <legend>Payment and Scoring</legend>
+
+            <div class="form-group">
+                <!--
+                    Make an input named "payment" which is a radio box with possible values of visa, paypal, mastercard
+                -->
+                <input name="payment" type="radio" value="visa" id="visa"/><label for="visa">Visa</label>
+                <input name="payment" type="radio" value="paypal" id="paypal"/><label for="paypal">PayPal</label>
+                <input name="payment" type="radio" value="mastercard" id="mastercard"/><label
+                    for="mastercard">MasterCard</label>
+            </div>
+
+            <div class="form-group">
+                <label for="score">Score:</label>
+                <!--
+                    Make an input named "score" which is a list of choices for the score
+                -->
+                <select name="score" id="score">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+        </fieldset>
+        <div class="form-group">
+            <input type="submit"/>
+        </div>
+    </form>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">Validate</a>
+</div>
+</body>
 </html>
