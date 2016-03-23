@@ -30,12 +30,39 @@
 		return car;
 	}
 
+	function makeEngine() {
+		var cylinders = [1, 2, 4, 6, 8, 10, 12];
+		var volume = [250, 500, 750, 1000, 1500, 200];
+		var fuel = ['diesel', 'petrol', 'jet fuel', 'pirtu'];
+		var torque = [100, 250, 500, 1000, 1250];
+
+		var randCylinders = Math.floor(Math.random() * cylinders.length);
+		var randCVolume = Math.floor(Math.random() * volume.length);
+		var randFuel = Math.floor(Math.random() * fuel.length);
+		var randTorque = Math.floor(Math.random() * torque.length);
+
+		var engine = {
+			cylinders: cylinders[randCylinders],
+			volume: volume[randCVolume],
+			fuel: fuel[randFuel],
+			maxTorque: torque[randTorque]
+		};
+
+		return engine;
+	}
+
 	function displayCar(car) {
 		console.log("Your new car is a " + car.year + " " + car.make + " " + car.model);
 	}
 
+	function displayEngine(engine) {
+		console.log("Your engine is a "+engine.cylinders+" cylinder "+engine.fuel+" engine with a volume of "+engine.volume+" cubic centimeters and a maximum torque of "+engine.maxTorque+"Nm");
+	}
+
 	var carToSell = makeCar();
+	var engine = makeEngine();
 	displayCar(carToSell);
+	displayEngine(engine);
 
   </script>
 </head>
