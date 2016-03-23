@@ -9,14 +9,18 @@
   <span id="ajaxButton" style="cursor: pointer; text-decoration: underline">
     Make a request
   </span>
-
+<div>
+  <label for="url">URL:</label>
+  <input type="url" name="url" id="url" />
+  <button type="button" id="fetch" value="Fetch">Fetch</button>
+</div>
 
   <script type="text/javascript">
   (function() {
     var httpRequest;
-    var testUrl = 'data/story.json';
+    //var testUrl = 'data/story.json';
     // Use Github Gist when no web server is available
-    // var testUrl = 'https://gist.githubusercontent.com/c0lin/571d38b984d41b44aacf/raw/story.json';
+    var testUrl = 'https://gist.githubusercontent.com/c0lin/571d38b984d41b44aacf/raw/story.json';
     document.getElementById("ajaxButton").onclick = function() { makeRequest(testUrl); };
 
     function makeRequest(url) {
@@ -40,7 +44,7 @@
       }
 
       // set a callback function for when the httpRequest completes
-      httpRequest.onreadystatechange = alertContents;
+      httpRequest.onreadystatechange = handle404;
 
       // now do the actual AJAX request
       httpRequest.open('GET', url);
@@ -58,6 +62,19 @@
         }
       }
     }
+
+    function handle404() {
+      if (httpRequest.readyState === 4) {
+        if (httpRequest.status === 404) {
+          alert("Site is DOWN!");
+        }
+      }
+    }
+
+      var button = document.getElementById('fetch');
+      button.addEventListener('click', function (event) {
+        makeRequest(document.getElementById('url').value);
+      })
   })();
   </script>
 

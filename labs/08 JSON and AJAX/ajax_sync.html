@@ -17,16 +17,45 @@
   <script>
     try {
       // Use Github Gist when no web server is available
-      // var story = getJsonSync('https://gist.githubusercontent.com/c0lin/571d38b984d41b44aacf/raw/story.json');
-      var story = getJsonSync('data/story.json');
+      var story = getJsonSync('https://gist.githubusercontent.com/c0lin/571d38b984d41b44aacf/raw/story.json');
+      //var story = getJsonSync('data/story.json');
       addHtmlToPage(story.heading);
 
       story.chapterUrls.forEach(function(chapterUrl) {
-        var chapter = getJsonSync('data/'+chapterUrl); // remove the 'data/' part if using gist
+        var chapter = getJsonSync(chapterUrl); // remove the 'data/' part if using gist
+        if (chapter.html.indexOf('dictum') != -1) {
+          // Sample API key, DO NOT USE FOR PRODUCTION
+          var definition = getJsonSync("http://api.wordnik.com/api/word.json/dictum/definitions?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5");
+          var div = document.createElement('div');
+          div.appendChild(document.createElement('h1'));
+          div.appendChild(document.createElement('p'));
+          div.getElementsByTagName('h1')[0].innerText = 'Dictum';
+          div.getElementsByTagName('p')[0].innerText = definition[0].text;
+          document.body.appendChild(div);
+        }
         addHtmlToPage(chapter.html);
       });
 
       addTextToPage("All done");
+      var div = document.createElement('div');
+      div.appendChild(document.createElement('h1'));
+      div.getElementsByTagName('h1')[0].innerText = 'word dictionary list';
+      div.appendChild(document.createElement('ul'));
+      div.getElementsByTagName('ul')[0].id = 'dictionary';
+
+      document.body.addEventListener('dblclick',function(){
+        var word = window.getSelection().toString();
+        // Sample API key, DO NOT USE FOR PRODUCTION
+        var definition = getJsonSync("http://api.wordnik.com/api/word.json/"+word+"/definitions?api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5");
+
+        var entry = document.createElement('li');
+        entry.appendChild(document.createElement('b'));
+        entry.appendChild(document.createElement('span'));
+
+        entry.getElementsByTagName('b')[0].innerText = word;
+        entry.getElementsByTagName('span')[0].innerText = definition[0].text;
+        document.getElementById('dictionary').appendChild(entry);
+      });
     }
     catch (err) {
       addTextToPage("Argh, broken: " + err.message);

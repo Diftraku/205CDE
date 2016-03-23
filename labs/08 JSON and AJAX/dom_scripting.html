@@ -9,7 +9,9 @@
     <button id="hi">Hello Once</button>
     <button id="write">Write Something</button>
 	<p id="output">Click button 3 to set this text.</p>
+    <div id="hovermouse">some text</div>
     <script src="js/dom_utils.js"></script>
+    <script src="js/dom_utils_global.js"></script>
     <script>
         // here we will use the 'U' object defined in the utils script file
 
@@ -17,7 +19,7 @@
         // then add a click listener
         var helloButton = U.$('hello');
         var clickAction = function() { alert('Well HELLO!'); };
-        U.addEvent(helloButton, 'click', clickAction);
+        window.$live('#hello', 'click', clickAction);
         
         // this one removes the listener after a click
         var helloOnce = U.$('hi');
@@ -25,12 +27,33 @@
             alert('Well HELLO!');
             U.removeEvent(helloOnce, 'click', alertOnce);
         };
-        U.addEvent(helloOnce, 'click', alertOnce);
+        window.$live('button#hi', 'click', alertOnce);
 
         var writeText = U.$('write');
-        U.addEvent(writeText, 'click', function() {
+        window.$live('button#write', 'click', function() {
             U.setText('output', "Writing some new text for you.");
         });
+
+        var someDiv = U.$('hovermouse');
+        window.$live('div#hovermouse', 'mouseover', function () {
+            console.log('some text hover');
+        });
+        var elements = document.body.children;
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            window.$live('*', 'mouseover', function (event) {
+                console.log('mouse over '+event.target.id);
+            });
+        }
+
+        var newDiv = document.createElement('div');
+        newDiv.id = "newDiv";
+        newDiv.innerText = "new div";
+        document.body.appendChild(newDiv);
+        window.$live('#newDiv', 'mouseover', function () {
+            console.log('dynamic div');
+        })
+
     </script>
 </body>
 </html>
