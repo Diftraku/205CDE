@@ -1,13 +1,23 @@
-
-var notes = new Array();
+'use strict';
+var notes = [];
 
 function addItem() {
-	textbox = document.getElementById('item');
+	var textbox = document.getElementById('item');
 	var itemText = textbox.value;
 	textbox.value = '';
 	textbox.focus();
 	var newItem = {title: itemText, quantity: 1};
-	notes.push(newItem);
+	var exists = false;
+	notes.forEach(function(item){
+		if (item.title == newItem.title) {
+			item.quantity += 1;
+			exists = true;
+		}
+	});
+	if (!exists) {
+		notes.push(newItem);
+	}
+	saveList();
 	displayList();
 }
 
@@ -15,11 +25,9 @@ function displayList() {
 	var table = document.getElementById('list');
 	table.innerHTML = '';
 	for (var i = 0; i<notes.length; i++) {
-		var node = undefined;
 		var note = notes[i];
 		var node = document.createElement('tr');
-		var html = '<td>'+note.title+'</td><td>'+note.quantity+'</td><td><a href="#" onClick="deleteIndex('+i+')">delete</td>';
-	    node.innerHTML = html;
+		node.innerHTML = '<td>'+note.title+'</td><td>'+note.quantity+'</td><td><a href="#" onClick="deleteIndex('+i+')">delete</td>';
 		table.appendChild(node);
 	}
 }
@@ -29,5 +37,21 @@ function deleteIndex(i) {
 	displayList();
 }
 
-button = document.getElementById('add');
+function saveList() {
+	localStorage.notes = JSON.stringify(notes);
+}
+
+function loadList() {
+	console.log('loadList');
+	if (localStorage.notes) {
+		notes = JSON.parse(localStorage.notes);
+		displayList();
+	}
+}
+
+window.onload = function () {
+	loadList();
+};
+
+var button = document.getElementById('add');
 button.onclick = addItem;
