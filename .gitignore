@@ -73,3 +73,7 @@ Thumbs.db
 
 # codio files
 *.codio
+
+# IntelliJ IDEA
+*.iml
+.idea
