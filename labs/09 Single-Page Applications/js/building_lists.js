@@ -1,17 +1,35 @@
 
 var request = new XMLHttpRequest();
-request.open('GET', 'data/books.json', false);
+request.open('GET', 'https://raw.githubusercontent.com/Diftraku/205CDE/master/labs/09%20Single-Page%20Applications/data/books.json', false);
 request.send(null);
 var data = JSON.parse(request.responseText);
 console.log(data);
 
-var books = data.books;
+document.body.appendChild(document.createElement('h1'));
 
-var list = document.createElement('ol');
+var books = data.books;
+var list = document.createElement('table');
+var heading = list.appendChild(document.createElement('thead'));
+var headingColumn = heading.appendChild(document.createElement('th'));
+headingColumn.innerText = 'Title';
+headingColumn = heading.appendChild(document.createElement('th'));
+headingColumn.innerText = 'Year';
+headingColumn = heading.appendChild(document.createElement('th'));
+headingColumn.innerText = 'ISBN';
+headingColumn = heading.appendChild(document.createElement('th'));
+headingColumn.innerText = 'Authors';
+
 for (var i=0; i < books.length; i++) {
-	console.log(books[i].title);
-	var item = document.createElement('li');
-	item.innerHTML = books[i].title;
-	list.appendChild(item);
+	var row = document.createElement('tr');
+	row.addEventListener('click', function (event) {
+		document.querySelector('body h1').innerText = event.target.firstChild.data;
+	});
+	for (var field in books[i]) {
+		var cell = row.appendChild(document.createElement('td'));
+		if (books[i].hasOwnProperty(field)) {
+			cell.innerText = books[i][field];
+		}
+	}
+	list.appendChild(row);
 }
 document.body.appendChild(list);
