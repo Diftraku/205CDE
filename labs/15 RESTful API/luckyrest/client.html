@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LuckyREST Client</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script type="text/javascript">
+        window.onload = function () {
+            var number = document.querySelector('#number').onmouseup = function() {
+                getLucky('number');
+            };
+            var word = document.querySelector('#word').onmouseup = function() {
+                getLucky('word');
+            };
+            var both = document.querySelector('#both').onmouseup = function() {
+                getLucky('both');
+            };
+
+            function getLucky(type) {
+                if (type == 'both' || typeof type != "string") {
+                    var target = '/lucky';
+                }
+                else {
+                    var target = '/lucky/'+type;
+                }
+                if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+                    req = new XMLHttpRequest();
+                } else if (window.ActiveXObject) { // IE
+                    try {
+                        req = new ActiveXObject("Msxml2.XMLHTTP");
+                    }
+                    catch (e) {
+                        try {
+                            req = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        catch (e) {
+                            console.log('Fail!', e);
+                        }
+                    }
+                }
+                req.onreadystatechange = function () {
+                    if (req.readyState === 4) {
+                        if (req.status === 200) {
+                            var data = JSON.parse(req.responseText);
+                            if (data.hasOwnProperty('payload')) {
+                                document.querySelector('#response').innerHTML = '<p></p>';
+                                if (type == 'both') {
+                                    var text = 'Lucky number is '+data.payload.number+' and lucky word is '+data.payload.word;
+                                }
+                                else {
+                                    var text = 'Lucky '+type+' is: '+data.payload[type];
+                                }
+                                document.querySelector('#response p').innerText = text;
+                            }
+                            else {
+                                console.error('API returned garbage', data);
+                            }
+                        }
+                    }
+                };
+
+                req.open('GET', target);
+                req.send();
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h2>Feel Lucky?</h2>
+        <button id="number" class="btn btn-default">Number</button>
+        <button id="word" class="btn btn-default">Word</button>
+        <button id="both" class="btn btn-default">Both</button>
+    </div>
+    <div id="response" class="row"></div>
+</div>
+</body>
+</html>
